@@ -8,5 +8,7 @@ obj/*.*
 results/*.*
 *.out
 *.mod
-src/*.mod
-src/*.o
+src_ss/*.mod
+src_ss/*.o
+src_trans/*.mod
+src_trans/*.o
