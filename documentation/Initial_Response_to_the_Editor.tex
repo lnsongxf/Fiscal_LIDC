@@ -1,0 +1,402 @@
+% Article Format: American Economic Review
+% Xin Tang @ Stony Brook University
+% Last Updated: August 2014
+\documentclass[twoside,11pt,leqno]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Text Layout                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page Layout
+\usepackage[hmargin={1.2in,1.2in},vmargin={1.5in,1.5in}]{geometry}
+\topmargin -1cm        % read Lamport p.163
+\oddsidemargin 0.04cm   % read Lamport p.163
+\evensidemargin 0.04cm  % same as oddsidemargin but for left-hand pages
+\textwidth 16.59cm
+\textheight 21.94cm
+\renewcommand\baselinestretch{1.15}
+\parskip 0.25em
+\parindent 1em
+\linespread{1}
+
+% Set header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage}
+%\fancyhead[CE]{\textit{JI QI, XIN TANG AND XICAN XI}}
+%\fancyhead[CO]{\textit{THE SIZE DISTRIBUTION OF FIRMS AND INDUSTRIAL POLLUTION}}
+\cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+%\renewcommand*\footnoterule{}
+%\setcounter{page}{1}
+
+% Font
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{phv}
+%\usepackage[lite]{mtpro2}
+% use Palatinho-Roman as default font family
+%\renewcommand{\rmdefault}{ppl}
+\usepackage[scaled=0.88]{helvet}
+\makeatletter   % Roman Numbers
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\usepackage{CJK}
+
+% Section Titles
+\renewcommand\thesection{\textnormal{\textbf{\Roman{section}.}}}
+\renewcommand\thesubsection{\textnormal{\Alph{subsection}.}}
+\usepackage{titlesec}
+\titleformat*{\section}{\bf \center}
+\titleformat*{\subsection}{\it \center}
+\renewcommand{\refname}{\textnormal{REFERENCES}}
+
+% Appendix
+\usepackage[title]{appendix}
+\renewcommand{\appendixname}{APPENDIX}
+
+% Citations
+\usepackage[authoryear,comma]{natbib}
+\renewcommand{\bibfont}{\small}
+\setlength{\bibsep}{0em}
+\usepackage[%dvipdfmx,%
+            bookmarks=true,%
+            pdfstartview=FitH,%
+            breaklinks=true,%
+            colorlinks=true,%
+            %allcolors=black,%
+            citecolor=blue,
+            linkcolor=red,
+            pagebackref=true]{hyperref}
+
+% Functional Package
+\usepackage{enumerate}
+\usepackage{url}      % This package helps to typeset urls
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Mathematics                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs,upgreek}
+% Operators
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\e}{\mathrm{e}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\plim}{plim}
+\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\gvec}[1]{{\boldsymbol{#1}}}
+
+\newcommand{\code}{\texttt}
+\newcommand{\bcode}[1]{\texttt{\blue{#1}}}
+\newcommand{\rcode}[1]{\texttt{\red{#1}}}
+\newcommand{\rtext}[1]{{\red{#1}}}
+\newcommand{\btext}[1]{{\blue{#1}}}
+
+% New Environments
+\newtheorem{result}{Result}
+\newtheorem{assumption}{Assumption}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\setlength{\unitlength}{1mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Tables and Figures                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{threeparttable,booktabs,multirow,array} % This allows notes in tables
+\usepackage{floatrow} % For Figure Notes
+\floatsetup[table]{capposition=top}
+\usepackage[font={sc,footnotesize}]{caption}
+\DeclareCaptionLabelSeparator{aer}{---}
+\captionsetup[table]{labelsep=aer}
+\captionsetup[figure]{labelsep=period}
+\usepackage{graphicx,pstricks,epstopdf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Insert Code Snippet                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings,textcomp,upquote}
+\lstset{
+     language=fortran,
+     frame = single,
+%     backgroundcolor=\color[RGB]{255,228,202}, % pink
+     backgroundcolor=\color[RGB]{231,240,233}, % green
+%     backgroundcolor=\color[RGB]{239,240,248},
+     framerule=0pt,
+     showstringspaces=false,
+     basicstyle=\ttfamily\footnotesize,
+     numbers=left,
+     stepnumber=1,
+     numberstyle=\tiny,
+     keywordstyle=\color{blue}\ttfamily,
+     stringstyle=\color{red}\ttfamily,
+     commentstyle=\color[rgb]{.133,.545,.133}\ttfamily,
+     morecomment=[l][\color{magenta}]{\#},
+     fontadjust,
+     captionpos=t,
+     framextopmargin=2pt,framexbottommargin=2pt,
+     abovecaptionskip=4ex,belowcaptionskip=3pt,
+     belowskip=3pt,
+     framexleftmargin=4pt,
+     xleftmargin=4em,xrightmargin=4em,
+     texcl=false,
+     extendedchars=false,columns=flexible,mathescape=true,
+     captionpos=b,
+}
+\renewcommand{\lstlistingname}{Source Code}
+
+\title{\vspace{-1cm}\Large{\textsf{The Welfare Implications of Fiscal Consolidations in Low-income Countries} \\ \textsf{Revision Plan for the Economic Journal}}}
+\author{\normalsize\textsc{Xin Tang} \\ \normalsize\textsc{International Monetary Fund}}
+\date{\normalsize\today}
+
+\begin{document}
+\maketitle
+
+This note serves as a foundation for our revision to \textit{The Economic Journal}. It will be long at this moment, because I am trying to first list all the issues we ideally should address. I will take a narrative tone as well, serving mostly as ``thinking out loud,'' meaning also that there will be a lot of repetition. When all the materials are there, we can discuss how to reorganize the note and draft the proposal to Nezih.
+
+\section{An Overview of Our Strategy}
+
+\textit{The Objective of Our Project.---}The ultimate goal of our project is to evaluate quantitatively how Ramsey taxes function differently in developing versus developed countries. Notice that here I am referring to the \textit{objective of our project} as opposed to the \textit{the content of our paper}, because the content could change by quite a bit (more on this below). As was pointed out by the editor and the two referees, which is indeed a very good point, to show this convincingly, we need to show
+\begin{enumerate}
+    \item
+    how these taxes work in advanced economies;
+    \item
+    how these taxes work in developing countries; and
+    \item
+    what drives the difference.
+\end{enumerate}
+If we take our current setting at its face value, in the above structure, our main results can be stated as follows. Revenue mobilization using VAT in low-income countries has large welfare costs. The reason is that while tax revenue is spent on manufacturing goods produced by the urban formal sector, VAT is imposed on everyone. Since rural region is on average poorer, VAT works implicitly as a \textit{regressive} income tax, causing substantial welfare costs.
+
+This answers Question 2 above. What we are missing right now is answers to Questions 1 and 3. One example would be that when the same model is calibrated to advanced economies, revenue mobilization with VAT does not cause too much welfare costs. The reason is that because the rural-urban gap is much smaller, even if rural area is still taxed heavier, it is not \textit{regressive}. What drives the difference would be the sharp urban-rural gap.
+
+Further thinking reveals that this is easier said than done. Developing countries could differ in many ways from advanced economies. An incomplete list of the elements that could interfere with our arguments includes sectoral composition, within/between region inequality, tax incidence (who pays for each tax), tax structure (the relative share of each tax in government revenue), etc. To isolate how much each of these factors explains the difference would be a long and tedious exercise. Basically we start from either the advanced or the developing economies, and gradually move the economy to the other one by changing one factor at a time. Each time we would run the revenue mobilization exercise again, and compute the welfare costs. This is what \citet{Restucciaetal:2008} and \citet{Conesaetal:2009} did in their papers. A potential issue here is that for us, it is very likely that the welfare costs are NOT responding monotonically to the series of changes, making interpreting the results tricky. In any case, one thing clear is that a mountain of work awaits. This way, we are connected to the development economics literature (more on this below).
+
+\textit{Supporting Our Modeling Assumption.---}I was emphasizing a lot on the ``face value'' in the previous paragraph, because as pointed out by both referees, the way we model the economy requires justification. And by justification, I do NOT mean cheap talk, but real, serious, and solid data work. Though our results could change significantly, to me this is the most important task, more than anything else. If we cannot present credible evidence showing that our model is a reasonable approximation to actual developing economies, there is no way people buy our results. Regardless how neat the intuition is, it simply is a problem set in a textbook.
+
+To do cross-country comparison, we are in the realm of development economics. In the literature, there are two ways we can calibrate the model. The first is that we target a general developing country and a general developed country. This strategy is adopted by \citet{Caselli:2005}, \citet{Restucciaetal:2008}, and to some extent \citet{AdamopoulosRestuccia:2014}. Another way to do this is first to calibrate the benchmark economy to one developing country, for instance Ethiopia, and then to a developed country, for instance the United States; and later compare the results. This strategy is very common in development economics, a number of papers that jumping out of my head include \citet{Bueraetal:2011}, \citet{BueraShin:2013}, \citet{Bueraetal:2013}, \citet{LagakosWaugh:2013}, \citet{Lagakos:2016}, \citet{Fengetal:2018}, \citet{ItskhokiMoll:2019}, and a million more. In both cases, we would have to compile the data for a cross-section of countries, to either show that developing countries indeed differ from developed countries in a stylized way (the first strategy), or the two countries we choose as representative are indeed representative (the second).
+
+There is one subtle point here though, and it is very closely related to the comments from the editor and the referees. For papers adopting the second strategy, they are usually trying to quantify how one particular factor contributes to explaining the cross-country variation of another. For instance, the series of Paco's papers deal with how financial frictions drive the difference in aggregate TFP, the speed of growth convergence, etc. Putting in the language of Referee 2, the ``role of financial frictions'' is the question mark that he/she was asking for. We would need to search for a similar factor in our case as well. Using the above illustrative example, it would be ``how rural-urban gap drives the welfare costs of revenue mobilization?''
+
+For this rural-urban gap story to hold, it is crucial that VAT functions like a regressive income tax. The key assumptions that deliver this prediction are that VAT are collected on the consumption of everybody, and government expenditure is only spent on manufacturing goods. We provide virtually no evidence in the paper that this is indeed the case. Hence at this moment, we should step back a bit and first do very careful data work to find out what is the tax incidence in reality. Depending on what we find in the data, we may have to change the model and the story altogether. \rtext{I will stand VERY FIRMLY on insisting this.} Regardless of whether the referees have brought up this issue or not, if we cannot justify our modeling assumption, I see no point of doing any quantitative exercises. The results would simply be nonsense. It does not matter whether changing the model is time-consuming or risky, this is the pillar of the paper. If we do not do it now, we are either putting ourselves in greater risk of being rejected, or spending 10 times more efforts in the future to fix something in a big mess.
+
+\textit{Making the Paper General Interests.---}\textit{The Economic Journal} is a general interests journal, so we cannot write the paper as if we are submitting to \textit{Review of Economic Dynamics}. This was pointed our by the editor in his letter---``\textit{You are now trying to sell your paper to macro-public finance crowd. They will like this, but the paper will have a limited impact. You really need to tell development people why your paper is valuable.}''---and rightly so. Well on the positive side, it seems that we have indeed done a good job in writing the paper as if we are submitting it to a macro field journal.
+
+Now let us come to how should we advertise our paper to other fields. I see three strands of literature that our paper has implication on: the \textit{optimal taxation} literature, the \textit{taxation and development} literature, and the \textit{development economics} literature.
+
+The optimal taxation literature contains two sub-directions. One is the macro-public finance literature with a million papers by people from Minnesota which I will skip here. They should stand with us, as long as our execution is solid. The other is the theoretical optimal taxation literature of \citet{DiamondMirrlees:1971a,DiamondMirrlees:1971b} and \citet{AtkinsonStiglitz:1976}. Later work in this direction focuses primarily on the issue of ``under what conditions would the Atkinson-Stiglitz results be violated?'' Here are a couple of examples to just give you a bit of flavor on what these people do: \citet{Naito:1999} show that when there are heterogenous production factors, differential commodity taxes would help relax the incentive constraints; \citet{Saez:2002} show that when there are heterogeneous tastes for rich and poor people, differential commodity tax could play a role in redistribution; \citet{Stiglitz:2018} himself provided a recent overview of the literature.
+
+To connect to this literature is not easy. We need to first identify, in a very stylized model down the the level of the theory community, that in what sense does our model feature the Diamond-Mirrlees or Atkinson-Stiglitz elements; and then prove why the conclusions do not hold. The issue here is that I have absolutely zero comparative advantage in micro-theory. I can do the algebra if someone sets the model up for me. But to write a model in a way that theory people like has never been something in my toolbox. Plus if we can do something like this, with the addition of solid quantitative work, I would say we can send the paper to a top-5. A more realistic way to please these people is follow what quantitative macro people usually do, for instance \citet{Conesaetal:2009}, which is to show that under certain structure of the economy, one tax works in the same way as another. In \citet{Conesaetal:2009}, what they find is that when the elasticity of labor supply varies over the life-cycle, the government usually wants to tax age-dependent labor income tax.\footnote{By the way, this age-dependent income tax is pretty popular. Jonathan presented his paper \citet{Heathcoteetal:2019} last year in the SED.} Without such an instrument, capital income tax allows the government to achieve an approximation. So there are two key contributions to me here. First, capital income tax works in the same way as age-dependent labor income tax. Second, quantitatively, the benefit from taxing labor differently over the life-cycle outweighs the cost of disincentive to capital accumulation. Put in our case, what we are looking for is that the economic structure of developing countries make certain tax works in the same way as another. At this moment, the sectoral-region combination of production, the rural-urban gap, together with the mismatch between the tax source and government expenditure, make VAT work in the same way as regressive income tax. I would say that this is what gives us the \textit{resubmit} part. If after careful data work, we can still come up with a model where we can find an insight like this, then I would say we are pretty much in. If we cannot, let's go straight to RED. The way I see that we contribute to this literature now, is along the direction of heterogenous production factor by \citet{Naito:1999}.
+
+This type of ``second-best [\citet{LipseyLancaster:1956}]'' insights where one thing behaves like another is also shared by the taxation and development literature, for instance \citet{EmranStiglitz:2005} (non-uniform commodity tax fixes the distortion caused by informality), \citet{AuriolWarlters:2005} (taxes create large firms in the equilibrium that easy to tax in the equilibrium), \citet{Keen:2008}, \citet{GordonLi:2009} and \citet{Fanetal:2018} (VAT enhances tax compliance), with many more. The main objective of this literature is to study how specific tax instrument works in developing countries at a practical level. Key words that frequently show up in this literature include non-compliance, tax evasion, informality, administrative costs, universal filing, political economy, capacity building, etc., those words that fly around the Fund. An interesting thing here is that many papers in this area share the same title of ``Taxation and Development,'' for instance \citet{BurgessStern:1993}, \citet{Keen:2012}, and \citet{BesleyPersson:2013}. Other papers in this area include \citet{Keen:2008}, \citet{KeenLockwood:2010}, \citet{GordonLi:2009}, and a 2011 Board Paper \citet{IMF:2011}. It is not difficult to link to this literature, though I would not bet that they actually read our paper. These papers are mostly about at a practical level, has a certain tax worked; if yes why and if not how. The work there is mostly empirical, meaning that general equilibrium impact does not exist by assumption. I would argue that tax reform is perhaps one of the most prominent examples on justifying the adoption of a general equilibrium framework because the sheer amount of people such reforms affect. Our contribution would be as the following. While these papers improved dramatically our understanding of \textit{how to make a tax instrument work in developing countries}, we take a step backward to study \textit{which tax instrument should we choose to work on}. In this sense our paper complements this literature by showing that broadly speaking in developing countries should the government tax \textit{consumption}, \textit{labor income} or \textit{capital income}. A presumption in our model would be that there are no implementation issues. As a result, our paper would provide general guidance that in developing countries, which tax is more desirable from a pure equity-efficiency trade-off perspective. Building upon our findings, people can later work on the implementation of the tax instrument we propose, possibly in tandem with other social programs that mitigate some of the drawbacks we prescribe (recall that Referee 1 asks us to elaborate more on the transfers). Some papers in this area indeed tries to answer the same problem, for example \citet{EmranStiglitz:2005}, but for people to take the conclusions seriously, a quantitative treatment is warranted. Here let me quote the Nobel Lecture by \citet{Prescott:2006} which says
+\begin{quote}
+\textit{``Macroeconomics has progressed beyond the stage of searching for a theory to the stage of deriving the implications of theory.''}
+\end{quote}
+and the handbook chapter by \citet{HasslerKrusell:2018}
+\begin{quote}
+\textit{``[M]odern macroeconomic models...do not necessarily develop new concepts or ideas but can rather be classified as applications of existing theory to address empirical issues...Thus, at its core, modern macroeconomics is about making statements about numbers.''}
+\end{quote}
+Thus, the quantitative framework can host classic \citet{Ramsey:1927} (inelastic factors should be taxed more) and \citet{Harberger:1962} (the tax incidence should be as broad as possible) mechanisms as well as numerous others and let them compete with each other, provided that we do our calibration in a careful and sensible way.
+
+Lastly, our paper can be connected to the macro-development literature as well. Some familiar names in this area include Douglas Gollin, Berthold Herrendorf, David Lagakos, Diego Restuccia, Michael Waugh, and many others. I tried to steer away from this literature in the current version, since we are not really talking about \textit{structural transformation}. One particular reason I do this is to shut down people's request of introducing migration into our model, which frequently accompanies \textit{transformation}. The reasons are two-fold. First, I do not think that tax changes are quantitatively important factors that drive massive migration. There are papers talking about the role of seasonal shocks [\citet{Lagakosetal:2017}], insurance against risks [\citet{Morten:2018}], and regional difference in wages [\citet{HarrisTodaro:1970} and \citet{BryanMorten:2019}]. However, at least to the best of my knowledge, I have not seen papers with solid empirical evidence supporting taxation. If the role played by tax changes are rather minor in reality, I would be comfortable to simply shut it down as an approximation. Second, our model is complex enough. Even at its current stage, it is virtually impossible to sort out the intuition behind all the results. We will never go very far with a paper where we cannot explain the results. That said, we would have to find some evidence to convince the editor and the referees that migration is not very important. If eventually we have to put the migration mess in, my sense is that we will definitely need to simplify other elements of the model. One thing we should keep in mind though, is that an old paper by \citet{Saez:2004} analyzed the Atkinson-Stiglitz results with and without occupational choice---labeled as long-run and short-run in his paper---which would be very similar to including migration in our setting. It is a pure theoretical paper, so for obvious reasons I did not read it. But eventually if we have to go on this direction, it should be somewhere we can link with that literature.
+
+That said, if we revise our paper along the line of cross-country comparison, we do contribute to the more broad development economics literature, which emphasizes on the difference between developing and advanced economies, as opposed to the narrower structural transformation literature which put a stroke on how developing countries converge to developed countries. Typically those papers with a keyword of ``cross-country analysis'' would fit into this category: \citet{Gollinetal:2004, Gollinetal:2007}, \citet{Restucciaetal:2008}, \citet{Bartelsmanetal:2013}, \citet{LagakosWaugh:2013}, \citet{AdamopoulosRestuccia:2014}, series of papers by Paco Buera mentioned above, and many more. Our contribution to this literature would be as follows. The literature has mainly focused on the productivity implications caused by differences in certain elements between developing and developed economies. We show that these elements also cause taxes to work differently as well, a point that is policy-relevant, but was under-studied in the literature.
+
+The editor and the referees will ask us to cite more papers for sure. But if we can place our contribution to the above three literature, to me, it is ``general'' enough to a wide audience as a starting point.
+
+\section{A Proposal of Revising the Paper}
+
+All right, now that we have enough on the big picture, let us move onto more concrete and practical issues: how to move forward. I will also insert some of my notes from reading the literature in this section, so that I do not forget about them later on.
+
+The most important thing we need to do is to find evidence on how we should model a developing economy with taxes. This is the foundation. Everything else depends crucially on what our model looks like. When we have a model that is solidly backed by empirical evidence, we can then move on to issues such as how would our paper contribute to each strand of the literature, what would be the theoretical insight from our paper, how should we design our calibration strategy, what are the quantitative exercises to do, and eventually how to interpret the results.
+
+More specifically, we need to first look into the data, to see what are the commonly used tax instruments in developing countries, and who are being taxed by each instrument. Apparently, governments have more instruments than consumption, labor and capital income taxes. We are providing virtually no evidence at this moment as of which taxes in reality are grouped together and labeled as these three taxes in the model. Inevitably, some elements in the model need more details as well. For instance, a very incomplete list of the issues regarding how we model taxes would include
+\begin{enumerate}
+    \item
+    Is VAT levied on both rural and urban households as well as food and manufacturing goods, and of the same rate? When we say that rural households are being taxed with consumption tax, what kind of market are we talking about? Rural spot commodity market or retail grocery stores?
+    \item
+    What are the counterparts of large farmers in reality? Are workers they hire subject to labor income tax? Why is it necessary for them to serve both the export and domestic markets?
+    \item
+    Is it reasonable that the ``services'' produced in the urban area can be consumed by rural households as well? What is the counterpart of that ``urban informal'' sector that can also serve the rural area? And perhaps more importantly, how are they measured in the data? Is this done in a way that is consistent with the model?
+\end{enumerate}
+Here we can immediately see that once we start thinking seriously on this issue, our model has a number of crucial assumptions that are not well-justified. The fact that developing countries demonstrate huge variation puts yet more work on our table. For instance, there is the natural resource rich and poor countries; for some countries, what ``agriculture'' really means is fishery, while in others, it is more traditional farming, etc. For obvious reasons, we are not going to put all these difference in our model. So an important task is to find a good way to abstract those tax-relevant structure out. As another example, the penetration rate of supermarkets are high in Asian and South American countries, making the assumption of VAT being collected on all goods and all areas sensible, while it is not the case for African countries [\citet{ReardonTimmer:2007}]. We can go on and expand the list forever, but it would be counter-productive. Instead, let us take a step back, and start from an extremely trimmed down version of our model, and explore in the data whether additional elements should be included.
+
+At the bare minimum, we should have an Aiyagari closed economy with two regions (rural and urban) and two sectors (agricultural and manufacturing). Informality actually plays very little role in our paper, so let us leave it out at this moment. Each region is still populated by a continuum of households. Rural farmers only produce food subject to idiosyncratic agricultural risk; and urban households only work for manufacturing firms for wage, subject to idiosyncratic shocks. There are a battalion of literature showing the agricultural risks are idiosyncratic and uninsurable [\citet{DerconChristiaensen:2011}], so we should be fine here. There are a couple of papers showing that there is in fact substantial fluctuation in the urban labor market in developing countries, for the purpose of reference, I am listing a couple of them here: \citet{BlattmanDercon:2018}, \citet{Fengetal:2018}, \citet{Franklin:2018} and \citet{Poschke:2018}. The trimmed version of the model thus becomes the follows.
+
+All households still share the same log-linear preference:
+\begin{equation*}
+    U = \E \left[\sum_{t=0}^{\infty} \beta^t u(\vec{c}_t) \right],
+\end{equation*}
+where
+\begin{equation*}
+    u(\vec{c}_t) = \log c_t^a + \gamma \log c_t^m.
+\end{equation*}
+
+The recursive problem for rural and urban households are respectively
+\begin{align*}
+    & V^r(b^r,\varepsilon^r) = \max_{\{\vec{c}^r,b^{r'}\}} \left\{ u(\vec{c}^r) + \beta \E[V^r(b^{r'},\varepsilon^{r'})|\varepsilon^r] \right\} \\
+    & s.t. \\
+    & \qquad \vec{c}^r + b^{r'} = p^a z^a \varepsilon^r + (1+r)b^r,
+\end{align*}
+and
+\begin{align*}
+    & V^u(b^u,\varepsilon^u) = \max_{\{\vec{c}^u,b^{u'}\}} \left\{ u(\vec{c}^u) + \beta \E[V^u(b^{u'},\varepsilon^{u'})|\varepsilon^u] \right\} \\
+    & s.t. \\
+    & \qquad \vec{c}^u + b^{u'} = \varepsilon^u w + (1+r)b^u.
+\end{align*}
+There is a representative neoclassical firm in the urban area:
+\begin{equation*}
+    \max_{k} \left\{ k_t^{\alpha} - w - (r+\delta)k_t \right\},
+\end{equation*}
+where we have implicitly assumed that the total effective labor equals one.
+
+To me, this is the backbone of our model in its simplest possible form. Our job now, is to add on top of this trimmed version other elements that are \textit{necessary} for our results to hold. By necessary, what I mean is only those that are relevant to our results. For instance, many developing countries rely on tariff to finance their expenditure. Does this mean that we have to include tariff in our model? Not necessarily. If our motivation is to strengthen domestic revenue mobilization by a certain amount, then it does not matter how much the government is able to raise by tariff. Unless tariff interacts with other domestic taxes in quantitatively non-trivial way. %Acknowledging such a criterion, let us enrich the model. We start with those less controversial elements, and then move onto those that require empirical underpinning.
+
+An overview of the tax structure in developing countries would be helpful here. The content is taken from \citet{BurgessStern:1993}. It is a bit dated, but overall the structure remains after comparing to \citet{IMF:2011}, with one innocuous difference I will state below.
+\begin{enumerate}
+    \item
+    In general, there are five tax instruments commonly used in developing countries: \textit{income tax}, \textit{domestic consumption tax}, \textit{trade tax}, \textit{social security contribution} and \textit{wealth and property tax}.
+    \item
+    Developing countries rely primarily on \textit{domestic sales and excise taxes}, \textit{import tariff} and \textit{corporate income tax}; while advanced economies collect most tax revenue from \textit{personal income tax}, \textit{consumption tax} and \textit{payroll tax}.
+    \item
+    Developing and developed countries both collect around 30\% of their total tax revenue from consumption tax. For developing countries, general sales tax and excise tax contribute roughly equally; while for developed countries, general sales tax is much more important. Within sales tax, VAT is usually collected at the retail stage, which unfortunately proves difficult for developing countries. Much of the sales tax in developing countries are imposed on the sales of imported goods.
+    \item
+    Trade taxes contribute to another 30\% of the tax revenue in developing countries, while they are almost negligible for developed countries. For developing countries, trade taxes are mostly collected through \textit{import duties}, while \textit{export duties} accounts only for less than 5\% of total tax revenue.
+    \item
+    Over the time, partly due to the trend of globalization, the relative importance of trade tax (especially import duties) drops dramatically. In countries where this is the case, there is a strong substitution between import duties and domestic indirect tax. \citet{IMF:2011} contains the related data. Because the import duties are mostly replaced by domestic indirect tax, it can work as motivation to our paper as well.
+    \item
+    The rest 30\% of tax revenue comes from income tax. In developing countries, about two-thirds are collected through corporate income tax, with the rest from personal income tax. Corporate income tax in developing countries falls mostly on the revenue of large or public firms, mostly due to their visibility. Personal income tax plays a minor role because measurement of individual income is difficult. In practice, revenue from this source tends to accrue from wages of public-sector and foreign corporations employees for the same visibility argument.
+    \item
+    Social security contribution and wealth taxes are negligible in developing countries.
+    \item
+    In developing countries, tax revenue consists roughly 80\% of government revenue, with the remaining 20\% coming from nationalized industries (natural resources, public utilities, telecommunications, heavy industries, etc.), mineral sources (royalties, governmental monopoly control) and agricultural marketing boards (price control, over-valued exchange rate, industrial protection).
+    \item
+    The agricultural sector deserves more explanation. Though small subsistence farmers are indeed hard to tax, and in many cases they are actually considered as belonging to the ``informal sector,'' which I will come back below, agricultural sector as a whole has always been considered being \textit{implicitly} taxed [\citet{BinswangerDeininger:1997} and \citet{Andersonetal:2013}]. In fact, quite on the contrary to being untaxed, the sector was long considered being taxed too much. To reconcile the two seemingly contradicting statements, it is important to notice that in developing countries the governments control the supply of vital agricultural input (irrigation, seed and agricultural chemicals), and in many cases, a sheer amount of the total agricultural output is collected by nationalized corporation. The difference in prices between the input and output thus creates an implicit tax, despite the lack of explicit taxes.
+
+    It would be very messy to try to include such features into our model. The good news is that according to \citet{Andersonetal:2013}, the implicit tax in developing countries drops dramatically over the time. Hence we do have an argument to silent people if they ask. The most important take-away point here is to recognize that the word ``agricultural tax'' could mean very different things depending on the context. This goes back to my early point of measuring everything in a consistent way.
+\end{enumerate}
+
+With the above facts, now let us think about how to enrich our framework.
+\begin{enumerate}
+    \item
+    The way we model personal and corporate income taxes in the urban area should work just fine.
+    \item
+    However, the way we model them in the rural area is far from credible. A couple of issues come to my mind at this moment:
+    \begin{enumerate}
+        \item
+        Do we need an export sector given that export duties play a minor role?
+        \item
+        Do we need a large farmer that hires rural labor to produce domestic food? Is is sensible that the workers pay personal income tax? We are implicitly assume that these are big firms visible on the government's radar if we include them; and they resemble more like the manufacturing firms in the urban area than anything else. How important are these firms in employment and output? Are they subject to the same corporate income tax? We need to answer these questions. But I feel that there is probably a ground to put them in the analysis.
+        \item
+        If we do include a rural formal labor market, bear in mind, we need to target the employment as well, since this is part of the tax base.
+    \end{enumerate}
+    \item
+    We need to measure the sectors in an internally consistent way. Referring to the paper by \citet{Herrendorfetal:2013}, are we measuring share by expenditure or by value added, meaning that does a Big-Mac count entirely as food/services or a fraction in all three sectors at the same time?
+    \item
+    This brings to us the issue of what do we mean by informal services. At this moment it seems that we are referring to street vendors, peddlers and so on. But it is hard to imagine that the rural people also purchase this type of services from the urban guys. \citet{SchneiderEnste:2000} were not clear about whether subsistence farmers are included; and indeed evidence is all over the place. Valuable information is provided in Section \rom{3}.B of \citet{Gollinetal:2013}, where they claimed that home-consumed production of agricultural goods, though usually labeled as informal, does fall within the boundary of the national accounts for agricultural value-added. In practice, this is usually done by surveying the area planted and yields, as well as output from animal output. Hence it seems that subsistence farming should belong to agriculture as opposed to informal services.
+
+    My reading of the literature suggests in general two forms of informality: home production in the form of ``cleaning and household upkeep'' and ``cooking and food production'' [\citet{Greenwoodetal:2005} and \citet{Bridgmanetal:2018}]; and subsistence entrepreneurship in the form of low-skill own-account and self-employed entrepreneurs [\citet{Gollin:2008} and \citet{Poschke:2018}]. We should be able to find some statistical evidence for the urban households from IPUMS according to \citet{Poschke:2018}. Subsistence entrepreneurship in the rural area is usually in the form of rural non-farm enterprise [\citet{Reardonetal:2007} and \citet{WorldBank_RuralNonfarm}]. Now the name suggests that it is problematic to put them under the agricultural sector. However, statistically, it could be that they are not important. This brings further to us the issue of what do we mean by the rural area? Are small towns rural or urban? In most countries they are, meaning that there is some decent level of market transactions here and there; and we are not only talking about small villages without even paved road. Developing countries differ from each other substantially as well. There is no way we capture everything, and it could very well be the case that we can do things correctly in many different ways, so what matters here is we choose one definition and stick to it throughout.
+
+    One argument to include the informal sector is that because tax always create incentive for resources to flow to the informal sector, for developing countries with a large informal sector, such shrink in the tax base could be quantitatively important. I completely agree with the argument here. However, this puts our log-linear assumption problematic. The $\psi$ only captures the average preference of the informal sector, but not the \textit{price elasticity} of the demand. For log-linear preference, it is unit by assumption. Because the substitution caused by tax works through relative price, it is crucial that we get the demand elasticity right.
+
+    \item
+    Then there comes the question of how should we model VAT. There are two issues I see. First, is VAT applied to both the rural and urban areas? Second, are the rates to different goods the same? I would not worry too much for the second assumption though, as in reality the difference is probably small in any case. It is the first that requires us to have a relatively good understanding of how taxes work in the rural area.
+
+    Now, at this moment, our results do rely on that these taxes are imposed in the rural areas as well \textit{quantitatively}. However, my intuition is that if instead we assume that VAT only applies to the urban area, the intuition that it works in the same way as an income tax should continue to work, though quantitatively the impact would be much smaller for sure. The reason is that VAT would reduce the price of agricultural food, which is the income of rural households. Though the government does not directly tax the rural households, implicitly the tax incidence falls on them by general equilibrium change in prices since they are the supplier of domestic food.
+
+    \item
+    Another key assumption for us is that government expenditure is spent mostly in the urban area. We have no evidence to support this assumption at this moment. The literature does suggest that there exists such ``urban bias'' in government spending of developing countries [\citet{EasterlyRebelo:1993} and \citet{Devarajanetal:1996}]. But these papers are way too old, we need to update them to say the least.
+
+    \item
+    Last but not least, do we need make the income process AR(1)? \citet{Lagakosetal:2017} use AR(1) for Bangladesh, fine, but he has panel data to estimate the parameters. \citet{Donovan:2014} use i.i.d, and \textit{The Review of Economic Studies} seems okay with it. I would not claim that AR(1) is more ``realistic'' simply because it is the case with the United States. My understand of the roles played by the autoregressiveness are two-fold: first, it quantitatively increases the idiosyncratic risks; and second it slows the transition. I do not see any of the issues critical to us though. First, because households have very little precautionary saving and reducing the autoregressiveness will only reduce the saving further, with zero being the lower bound of saving, the quantitative impact of the autoregressiveness on saving would be small and bounded. Second, since the difference of welfare costs between long-run and short-run is small even when $\rho$ is high, and that the difference has a zero as lower bound as well when transition is instant, the quantitative difference of introducing autoregressiveness is small again. Hence overall, the autoregressiveness seems to have played a rather minor role. Given that we have already a version of the code that tracks $\epsilon$ as a state variable, it would seem stupid to drop it. However, at the same time, an i.i.d. process would significantly simplifies the model and opens doors to including other features that would otherwise to costly to compute. Overall, my point is that there is no a priori reason that we should go with one or another, nor should \textit{recycle as much materials as possible} be our most important concern (of course we should do so whenever we can). Our final goal is to have a solid paper that answers the question.
+\end{enumerate}
+
+To me, the issues above are of top priority. We HAVE to have clear answer to all of them before we start investing time to address the comments. Our answers may not be perfect, but we need to do our best. We will simply be wasting time if we work on an undefendable model. Let me be very clear here. I have no a priori reason to either go in favor of or against our current model setting, so long as we can provide solid evidence. However, at this moment, it does seem to me that many empirical evidence suggests otherwise.
+
+\section{Addressing the Comments}
+
+Finally, let us come to the comments from the editor and the referees. I think it is very good editorship, so we should take as much as we can. For the reasons in the previous section, it is very likely that we will have to change the model, unfortunately. So I will leave many model-specific elements out for now.
+
+\begin{flushleft}
+\textbf{The Editor's Comment}
+\end{flushleft}
+\begin{enumerate}
+    \item
+    Part \textit{The Objective of Our Project} in Section \rom{1} addresses this point.
+    \item
+    Part \textit{Supporting Our Modeling Assumption} in Section \rom{1} addresses this point.
+    \item
+    I would say mathematically if people are allowed to move, our results indeed will be affected. But from the perspective of economics, I do not think that the results should be taken too seriously. First, as I wrote when reviewing the structural transformation literature, I do not think massive migration would happen simply due to local tax change. Second, migration usually involves huge fixed costs, and it is quite likely that rural migrants cannot find jobs in the urban area for extensive periods of time after the move [\citet{Fengetal:2018} and \citet{Poschke:2018}]. This means that we would have to capture the frictional urban labor market in our model, which goes way to far.
+    \item
+    Part \textit{Making the Paper General Interests} in Section \rom{1} addresses this point.
+    \item
+    I agree with the editor.
+    \item
+    I will leave these points to below when I am responding to the referees. But our results are indeed monotone with respect to the size of consolidation \textit{locally}. At some point if the government imposes expropriatory tax rate, of course the results are going to be non-monotone.
+\end{enumerate}
+
+\begin{flushleft}
+\textbf{Referee 1}
+\end{flushleft}
+\begin{enumerate}
+    \item
+    Thanks to him/her. We appreciate it.
+    \item
+    This should be easy, once we do the data work carefully. I can see where the confusion of the referee is coming from. There are too many normalization, and too many things that without explicit and clear real world counterparts. All these indeed make the model hard to digest.
+    \item
+    This is a very good point. The referee really read the paper very carefully. We need to go check the code. Though this is model specific, if we choose to go for a closed economy, we may not have this issue anymore. But we do have to be careful to close all the loop-holes.
+    \item
+    The price in the international market cannot be separately identified from the productivity $z^*$.
+    \item
+    That is true. It is indeed weird to choose one good as the numeraire and normalize the productivity of the other to unity. Though I do not think there are more normalizations than necessary, how we choose our calibration targets requires more thinking. Even if assuming that our model is correct, for the quantitative results to make sense, we need to get the tax base, tax rate, and average level of inequality (especially between region) right. As an example, we never verify whether the labor supply to the formal labor market, which determines the base for personal income tax, is consistent with the data.
+    \item
+    I guess the answer is yes. Point 5 in Section \rom{2} elaborates on this.
+    \item
+    I agree with the referee.
+    \item
+    There is nothing deep actually. It simply is because of the between region difference in average consumption. Say that you have 50 students, 25 boys and 25 girls. If all the boys score 60 in the final exam and all the girls score 90, the within gender ``distributional'' component would be zero for both genders. However, it is obvious that the whole class has a positive distributional component.
+    \item
+    We can do that, but sequential form is how we solve the problem in the code. In any case, if we change it to a neoclassical firm, the problem would be static.
+    \item
+    This is a very good point indeed. It closely relates to whether we want to frame our question as a comparison between an average developing country and an average advanced economy, or do we want to follow the macro-development literature by isolating one particular channel. Part \textit{Supporting Our Modeling Assumption} in Section \rom{1} addresses this point.
+    \item
+    We should do this.
+    \item
+    That is a good point. Point 5 touches upon this issue as well. It is model specific, so at this moment let us put it aside. But it is something we need to check when we do the calibration. It is very likely that our model is over-identified, meaning that we have more moments than parameters. Those extra degrees of freedom can serve as the base for over-identification test.
+    \item
+    The United Nations had a 4\% target for developing countries to achieve the Millennium Development Goals [\citet{UN:2005}].
+\end{enumerate}
+
+\begin{flushleft}
+\textbf{Referee 2}
+\end{flushleft}
+\begin{enumerate}
+    \item
+    Section \rom{1} addresses this point.
+    \item
+    We can talk about this for sure. But I am not convinced that it belongs to the main text though. The arguments are those standard ones when comparing quantitative versus empirical approaches. Maybe we can put a small section in the appendix. People may feel offended if we put it in the main text, as if we are trying to teach them some graduate school stuff.
+    \item
+    We can cite any survey, for instance \citet{Heathcoteetal:2009}. But I think few people would argue against Bewley-Huggett-Aiyagari.
+    \item
+    In general this is a very good point. Policy people (including DFID) would like it as well. I personally like the idea as well, with one caveat though, I have no trust on the quality of our country team's work...so I would be a bit hesitate to put those SIPs in an academic paper, especially on a very prestigious journal like EJ.
+    \item
+    I think he/she is referring to the macro-development literature. As I wrote in Section \rom{1}, I was deliberately steering away from that literature for the migration issue. But we can add it back, depending on how we eventually frame our question.
+    \item
+    Section \rom{1} addresses this point.
+    \item
+    Phew...this is tough. But we can refer people to the old Econometrica paper by \citet{HopenhaynPrescott:1992}, the working paper version of the original Aiyagari paper [\citet{Aiyagari:1993}], and the book chapter by \citet{RiosRull:1999}.
+    \item
+    This is a valid point. See my comments on measuring data and model in an internally consistent way in Section \rom{2}.
+    \item
+    This is also a good point. We will frame our question along this line as I wrote in Section \rom{1}.
+    \item
+    Another good point here. We have to put the exercise under the big picture of our paper as a whole. Now let us go back to \citet{DomeijHeathcote:2004} and see why they did the exercise there. In that paper, \citet{DomeijHeathcote:2004} studied the welfare costs of replacing capital income tax with labor income tax. Their starting point is \citet{Chamley:1986} and \citet{Judd:1985}, where optimal capital income tax should be zero in the steady state. On the contrary, what they find with the Aiyagari economy is that capital income tax should be positive. Since the difference between the standard growth model and Aiyagari model are the addition of household heterogeneity and markets incompleteness. It would be helpful to see which element reverses the results. This is not what we are after in this paper at this moment, so the referee is indeed raising a valid point. We should keep it though, since Referee 1 likes it. What we need to do is to think how this exercise could contribute to our understanding of the mechanism.
+    \item
+    Fair point. I think this is a referee report written by a British scholar by the way.
+    \item
+    I like this point as well, and we should not simply reply to him by saying ``this is standard in the literature.'' Having a clear idea of this issue would also help us guide our country teams to interpret the quantitative results. As I mentioned when I was teaching the course, there are two reasons we want to introduce transition path. First is the intergenerational fairness. Second is the short-run adjustment cost of households to an ``MIT shock.'' I tried to downplay these two points in the paper because we are not disciplining our model with anything along the time dimension. Depending on how we write and calibrate our model, we need to think more on this. Mathematically, the speed of transition would be controlled by those parameters with intertemporal implications, namely $\beta, \delta$ and $\rho$.
+\end{enumerate}
+
+\bibliography{D:/Dissertation/Literature/Dissertation1}
+\bibliographystyle{aea}
+
+\end{document}

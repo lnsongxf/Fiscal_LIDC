@@ -1,0 +1,12 @@
+documentation/*.*
+!documentation/*.tex
+!documentation/*.pdf
+!documentation/*.bib
+!documentation/Figures/*.*
+bin/*.*
+obj/*.*
+results/*.*
+*.out
+*.mod
+src/*.mod
+src/*.o
